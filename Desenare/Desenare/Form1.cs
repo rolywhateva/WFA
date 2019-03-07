@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,25 +42,25 @@ namespace Desenare
 
             drawing.GraphicsObj.FillPolygon(sB, p);
 
+            drawing.GraphicsObj.DrawArc(drawing.P, 300, 400, 200, 300, -60, -30);
 
-            string tags = "ABC";
-             lb = new Label[3];
-            for(int i=0;i<p.Length;i++)
-            {
-                 lb[i] = new Label();
-                lb[i].Text = tags[i].ToString();
-                lb[i].BackColor = Color.White;
-                lb[i].ForeColor = Color.Black;
-                lb[i].Location = new Point(p[i].X - 20, p[i].Y);
-                lb[i].Size = new Size(20, 30);
-                lb[i].Font = new Font(FontFamily.GenericMonospace, 3);
-                
-                this.Controls.Add(lb[i]);
-              
-              
-            }
+            drawing.GraphicsObj.DrawString("Sugi o ceapa", new Font(FontFamily.GenericSansSerif,15f), new SolidBrush(Color.Chocolate), 340, 200);
+            drawing.GraphicsObj.DrawBezier(drawing.P, 30, 50, 100, 120,30, 170, 50, 230);
+
+            HatchBrush hatchBrush = new HatchBrush(HatchStyle.DarkDownwardDiagonal, Color.Azure);
+            drawing.GraphicsObj.DrawEllipse(new Pen(Color.Azure), 300, 200, 400, 400);
+            drawing.GraphicsObj.FillEllipse(hatchBrush, 300, 200, 400, 400);
+
+
+
+
             drawing.Refresh();
 
+
+        }
+
+        private void pictureBox_Click(object sender, EventArgs e)
+        {
 
         }
     }
